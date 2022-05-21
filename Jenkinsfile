@@ -15,12 +15,16 @@ pipeline {
         stage('init') {
             steps {
                 script {
-                    gv.buildApp()
+                    gv = load "script.groovy"
                 }
                
                 
             }
         }
+        stage('build') {
+            steps {
+                script {
+                    gv.buildApp()
         stage('test') {
             when {
                 expression{
