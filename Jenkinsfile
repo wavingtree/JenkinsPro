@@ -19,16 +19,6 @@ pipeline {
                 }     
             }
         }
-        stage('test') {
-            when {
-                expression{
-                    params.executeTest == true
-                    
-                }
-            }
-            
-        } 
-        
         stage('build') {
             steps {
                 script {
@@ -36,6 +26,23 @@ pipeline {
                 }
             }
         }
+        
+        stage('test') {
+            when {
+                expression{
+                    params.executeTest == true
+                    
+                }
+            }
+            steps {
+                script {
+                    gv.testApp()
+                }
+            }
+            
+        } 
+        
+       
             steps {
                 script {
                     gv.testApp()
