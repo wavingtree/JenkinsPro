@@ -11,20 +11,14 @@ pipeline {
         booleanParam(name: 'executeTests', defaultValue: true , description: '')
     }
     
-    stages {
+   stages {
         stage('init') {
             steps {
                 script {
                     gv = load "script.groovy"
-                }
-               
-                
+                }     
             }
         }
-        stage('build') {
-            steps {
-                script {
-                    gv.buildApp()
         stage('test') {
             when {
                 expression{
@@ -32,6 +26,16 @@ pipeline {
                     
                 }
             }
+            
+        } 
+        
+        stage('build') {
+            steps {
+                script {
+                    gv.buildApp()
+                }
+            }
+        }
             steps {
                 script {
                     gv.testApp()
@@ -48,13 +52,12 @@ pipeline {
                 
             }
         }
-    }
+    
     
     post {
         always {
             echo 'Life is great'
         }
     }
-    
 }
-    
+ 
