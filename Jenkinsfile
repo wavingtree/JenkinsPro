@@ -50,11 +50,5 @@ pipeline {
                 
             }
         }
-    
-    
-    post {
-        always {
-            echo 'Life is great'
-        }
-    }
+   }
 }
