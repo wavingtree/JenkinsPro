@@ -1,17 +1,9 @@
-FROM node:13-alpine
+EXPOSE 8080
 
-ENV MONGO_DB_USERNAME=admin \
-    MONGO_DB_PWD=password
+COPY ./target/java-maven-app-1.0-SNAPSHOT.jar /usr/app/
+COPY ./target/java-maven-app-*.jar /usr/app/
+WORKDIR /usr/app
 
-RUN mkdir -p /home/app
+ENTRYPOINT ["java", "-jar", "java-maven-app-1.0-SNAPSHOT.jar"]
+CMD java -jar java-maven-app-*.jar
 
-COPY ./app /home/app
-
-# set default dir so that next commands executes in /home/app dir
-WORKDIR /home/app
-
-# will execute npm install in /home/app because of WORKDIR
-RUN npm install
-
-# no need for /home/app/server.js because of WORKDIR
-CMD ["node", "server.js"]
