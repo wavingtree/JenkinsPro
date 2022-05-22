@@ -34,22 +34,13 @@ pipeline {
                     
                 }
             }
+        }
             steps {
                 script {
                     gv.testApp()
                 }
             }
             
-        } 
-        
-       
-            steps {
-                script {
-                    gv.testApp()
-                }
-                
-            }
-        }
         
         stage('deploy') {
             steps {
