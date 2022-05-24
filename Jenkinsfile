@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-        nd_nd = credentials ('dockerhub')
+        nd_nd = credentials ('Dockerhub')
     }
     tools {
         maven 'Maven'
