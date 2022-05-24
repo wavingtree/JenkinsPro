@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment {
+        nd_nd = credentials ('dockerhub')
+    }
     tools {
         maven 'Maven'
     }
@@ -16,10 +19,10 @@ pipeline{
             steps {
                 script {
                     echo "building docker image"
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')])
-                        sh 'docker build -t treewaver007/demo-app:1.0 .'
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh 'docker push treewaver007/demo-app:1.0 '
+                    
+                    sh 'docker build -t treewaver007/demo-app:1.0 .'
+                    sh "echo $nd_nd_PSW | docker login -u $nd_nd_USR --password-stdin"
+                    sh 'docker push treewaver007/demo-app:1.0 '
 
                 }
             }
